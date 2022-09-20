@@ -19,16 +19,15 @@ const elementsOfGallery = galleryItems
   .join(' ');
 
 galleryContainerEL.insertAdjacentHTML('beforeend', elementsOfGallery);
+galleryContainerEL.addEventListener('click', onOpenModal);
 
-galleryContainerEL.addEventListener('click', onBigImg);
-
-function onBigImg(e) {
+function onOpenModal(e) {
   e.preventDefault();
   if (!e.target.classList.contains('gallery__image')) {
     return;
   }
-  console.dir(e.target.dataset.source);
-}
-const instance = basiclightbox.create(`
-	
+  const instance = basicLightbox.create(`
+    <img src=${e.target.dataset.source}>
 `);
+  instance.show();
+}
