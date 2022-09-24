@@ -18,16 +18,16 @@ const elementsOfGallery = galleryItems
   })
   .join(' ');
 
-galleryContainerEL.insertAdjacentHTML('beforeend', elementsOfGallery);
-galleryContainerEL.addEventListener('click', onOpenModal);
-
 function onOpenModal(e) {
   e.preventDefault();
   if (!e.target.classList.contains('gallery__image')) {
     return;
   }
   const instance = basicLightbox.create(`
-    <img src=${e.target.dataset.source}>
-`);
+        <img src=${e.target.dataset.source}>
+        `);
   instance.show();
 }
+
+galleryContainerEL.insertAdjacentHTML('beforeend', elementsOfGallery);
+galleryContainerEL.addEventListener('click', onOpenModal);
