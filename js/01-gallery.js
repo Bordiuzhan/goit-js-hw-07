@@ -23,10 +23,15 @@ function onOpenModal(e) {
   if (!e.target.classList.contains('gallery__image')) {
     return;
   }
-  const instance = basicLightbox.create(`
-        <img src=${e.target.dataset.source}>
-        `);
+  const instance = basicLightbox.create(`<img src=${e.target.dataset.source}>`);
   instance.show();
+  window.addEventListener('keydown', onEscPres);
+  function onEscPres(e) {
+    if (e.code === 'Escape') {
+      window.removeEventListener('keydown', onEscPres);
+      instance.close();
+    }
+  }
 }
 
 galleryContainerEL.insertAdjacentHTML('beforeend', elementsOfGallery);
